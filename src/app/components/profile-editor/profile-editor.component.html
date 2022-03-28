@@ -2,31 +2,53 @@
 
     <label for="first-name">First Name: </label>
     <input type="text" id="first-name" formControlName="firstName">
+    <div *ngIf="profileForm.controls['firstName'].invalid && (profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched)" class="alert">
+        Please enter First Name
+    </div>
 
     <label for="last-name">Last Name: </label>
     <input type="text" id="last-name" formControlName="lastName">
+    <div *ngIf="profileForm.controls['lastName'].invalid && (profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched)" class="alert">
+        Please enter Last Name
+    </div>
+
+    <label for="emial">Email: </label>
+    <input id="emial" type="email" formControlName="email">
+  
+    <label for="password">Password: </label>
+    <input id="password" type="password" formControlName="password" minlength="8">
 
 
-    <form formGroupName="address" class="container">
-        <h2>Address: </h2>
+    <form formGroupName="details" class="container">
 
-        <label for="street">Street: </label>
-        <input type="text" id="street" formControlName="street">
+        <h2>Details: </h2>
 
-        <label for="city">City: </label>
-        <input type="text" id="city" formControlName="city">
+        <label for="gender">Gender: </label>
+        <select for="gender" formControlName="gender">
+        <option value="">Empty</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+        </select>
 
-        <label for="state">State: </label>
-        <input type="text" id="state" formControlName="state">
+        <div *ngIf="profileForm.controls['gender'].invalid && (profileForm.controls['gender'].dirty || profileForm.controls['gender'].touched)" class="alert">
+            Select Gender
+        </div>
 
-        <label for="zip">Zip: </label>
-        <input type="text" id="zip" formControlName="zip">
+        <label for="address">Address: </label>
+        <input id="address" type="text" formControlName="address">
+  
+        <label for="phone">Phone Number: </label>
+        <input id="phone" type="tel" formControlName="phone" minlength="8">
 
     </form>
 
 
     <p>Complete the form to enable the button</p>
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-
+    <p>{{profileForm.status}}</p>
 
 </form>
+
+
+

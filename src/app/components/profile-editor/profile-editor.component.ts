@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-profile-editor',
   templateUrl: './profile-editor.component.html',
@@ -8,15 +8,21 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class ProfileEditorComponent implements OnInit {
 
   profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl(''),
+
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('',Validators.required),
+    email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    password: new FormControl('', Validators.required),
+
+    details: new FormGroup({
+      
+      gender: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      phone: new FormControl('', [Validators.required, Validators.pattern("^\\+[0-9]*$"), Validators.minLength(10)]),
     })
   })
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -26,13 +32,15 @@ export class ProfileEditorComponent implements OnInit {
     console.warn(this.profileForm.value);
   }
 
-  updateProfile(){
-    this.profileForm.patchValue({
-      firstName: 'Nancy',
-      address: {
-        street: '123 Drew Street'
-      }
-    })
-  }
+  // updateProfile(){
+  //   this.profileForm.patchValue({
+  //     firstName: 'Nancy',
+  //     address: {
+  //       street: '123 Drew Street'
+  //     }
+  //   })
+  // }
 
 }
+
+

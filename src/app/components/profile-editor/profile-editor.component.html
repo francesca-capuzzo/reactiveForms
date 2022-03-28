@@ -1,22 +1,27 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="container">
 
+    <h1>USER FORM</h1>
+    <h2>Personal Informations: </h2>
+
     <label for="first-name">First Name: </label>
-    <input type="text" id="first-name" formControlName="firstName">
-    <div *ngIf="profileForm.controls['firstName'].invalid && (profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched)" class="alert">
+    <input type="text" id="first-name" formControlName="firstName" required>
+    <div class="inner-text" *ngIf="profileForm.controls['firstName'].invalid && (profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched)" class="alert">
         Please enter First Name
     </div>
 
     <label for="last-name">Last Name: </label>
-    <input type="text" id="last-name" formControlName="lastName">
-    <div *ngIf="profileForm.controls['lastName'].invalid && (profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched)" class="alert">
+    <input type="text" id="last-name" formControlName="lastName" required>
+    <div class="inner-text" *ngIf="profileForm.controls['lastName'].invalid && (profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched)" class="alert">
         Please enter Last Name
     </div>
 
     <label for="emial">Email: </label>
-    <input id="emial" type="email" formControlName="email">
+    <input id="emial" type="email" formControlName="email" required>
   
     <label for="password">Password: </label>
-    <input id="password" type="password" formControlName="password" minlength="8">
+    <input id="password" type="password" formControlName="password" minlength="8" required>
+    <span class="inner-text" *ngIf="profileForm.controls['password'].touched && profileForm.controls['password'].errors?.['required']">The password is required</span>
+    <span class="inner-text" *ngIf="profileForm.controls['password'].touched && profileForm.controls['password'].errors?.['minlength']">The password is too short</span>
 
 
     <form formGroupName="details" class="container">

@@ -11,11 +11,11 @@ export class ProfileEditorComponent implements OnInit {
 
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('',Validators.required),
-    email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.minLength(8)]),
     password: new FormControl('', Validators.required),
 
     details: new FormGroup({
-      
+
       gender: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       phone: new FormControl('', [Validators.required, Validators.pattern("^\\+[0-9]*$"), Validators.minLength(10)]),

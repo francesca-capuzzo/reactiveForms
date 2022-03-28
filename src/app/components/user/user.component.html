@@ -1,0 +1,11 @@
+ <!-- <form [formGroup]="userForm" (ngSubmit)="logIn()">
+<div>
+    You are trying to login as <b>{{userForm.controls['username'].value}}</b>
+</div> 
+</form> -->
+
+
+<label for="name">Name: </label>
+<input type="text" id="name" [formControl]="name">
+<button type="button" (click)="updateName()">Update Name</button>
+<p>Value: {{name.value}}</p>

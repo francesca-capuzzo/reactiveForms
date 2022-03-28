@@ -32,6 +32,18 @@ export class ProfileEditorComponent implements OnInit {
     console.warn(this.profileForm.value);
   }
 
+  logIn(){
+    const controls = this.profileForm.controls;
+    console.log('Username: ' + controls['username'].value);
+    console.log('Password: ' + controls['password'].value);
+    console.log('Name: ' + controls['firstName'].value);
+    console.log('Surname: ' + controls['lastName'].value);
+    // console.log('Gender: ' + controls['gender'].value);
+    console.log('Address: ' + controls['address'].value);
+    console.log('Phone Number: ' + controls['phone'].value);
+    
+  }
+
   // updateProfile(){
   //   this.profileForm.patchValue({
   //     firstName: 'Nancy',
